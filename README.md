@@ -14,7 +14,7 @@ A simple HTTP server written in Go to demonstrate secure request handling using 
    ```
 3. Run the server:
    ```bash
-   go run main.go
+   go run ./cmd/SimpleServer/main.go
    ```
 
 ## Available Routes
