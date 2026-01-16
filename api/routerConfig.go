@@ -1,11 +1,17 @@
 package api
 
-import "ledavid.com/SimpleServer/misc"
-import "ledavid.com/SimpleServer/api/controllers"
+import (
+	simpleserver "ledavid.com/SimpleServer"
+	"ledavid.com/SimpleServer/api/controllers"
+	"ledavid.com/SimpleServer/api/middlewares"
+)
 
+// This function setup all the routes for every controller and middleware
 func AddRoutesAndMiddlewares() {
 	// All middlewares
+	simpleserver.SMux.HandleFunc("/home", middlewares.JwtAuth(controllers.Home))
 	// All routes
-	misc.SMux.HandleFunc("/", controllers.Home)
+	simpleserver.SMux.HandleFunc("/login", controllers.Login)
+	simpleserver.SMux.HandleFunc("/refresh", controllers.Refresh)
 
 }

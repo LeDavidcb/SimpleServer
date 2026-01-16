@@ -5,8 +5,9 @@ import (
 	"net/http"
 
 	"github.com/joho/godotenv"
+	simpleserver "ledavid.com/SimpleServer"
 	"ledavid.com/SimpleServer/api"
-	"ledavid.com/SimpleServer/misc"
+	"ledavid.com/SimpleServer/jwt"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 		fmt.Println("Error while tring to load .env", loadErr)
 		return
 	}
-	_, err := misc.GetJwtSecret()
+	_, err := jwt.GetJwtSecret()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -26,5 +27,5 @@ func main() {
 
 	// TODO: change to PORT
 	fmt.Println("Listening on port :8080")
-	http.ListenAndServe(":8080", &misc.SMux)
+	http.ListenAndServe(":8080", &simpleserver.SMux)
 }
